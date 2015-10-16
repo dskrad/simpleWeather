@@ -27,6 +27,7 @@ p {
   margin: 0px auto;
   text-align: center;
   text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 i {
