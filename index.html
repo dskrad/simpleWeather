@@ -11,6 +11,11 @@
     <script src="jquery.simpleWeather.js"></script>
     <script>
       $(document).ready(function() {
+        getWeather();
+        setInterval(getWeather, 600000); //update every 10 minutes
+      });
+      
+      function getWeather() {
         $.simpleWeather({
           woeid: '12760168',
           location: '',
@@ -32,7 +37,7 @@
             $("#weather").html('<p>'+error+'</p>');
           }
         });
-      });
+      };
     </script>
   </body>
 </html>
