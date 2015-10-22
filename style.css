@@ -39,6 +39,14 @@ i {
   line-height: 1.0;
 }
 
+#clock {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    color: white;
+    font-size: 32px;
+}
+
 .icon-0:before { content: ":"; }
 .icon-1:before { content: "p"; }
 .icon-2:before { content: "S"; }
