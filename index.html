@@ -45,7 +45,7 @@
         var today = new Date();
         var h = today.getHours();
         var m = today.getMinutes();
-        if (m < 10) {m = "0" + i};  // add zero in front of numbers < 10
+        if (m < 10) {m = "0" + m};  // add zero in front of numbers < 10
         $("#clock").html(h + ":" + m);
         var t = setTimeout(showClock, 500);
       };
