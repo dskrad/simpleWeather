@@ -13,8 +13,8 @@
     <script>
       $(document).ready(function() {
         getWeather();
-        showClock();
         setInterval(getWeather, 600000); //update every 10 minutes
+        setInterval(showClock, 500);
       });
       
       function getWeather() {
@@ -47,7 +47,6 @@
         var m = today.getMinutes();
         if (m < 10) {m = "0" + m};  // add zero in front of numbers < 10
         $("#clock").html(h + ":" + m);
-        var t = setTimeout(showClock, 500);
       };
      
     </script>
