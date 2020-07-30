@@ -17,6 +17,18 @@
         setInterval(showClock, 500);
       });
       
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(exportPosition, errorPosition);
+          } else {
+            alert("Geolocation not supported") ;
+        }
+      };
+      
+      function exportPosition(position) {
+        alert("Lat: " + position.coords.latitude + "Long:" position.coords.longitude);
+      };
+      
       function getWeather() {
         $.simpleWeather({
           woeid: '12760168',
