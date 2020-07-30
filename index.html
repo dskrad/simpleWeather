@@ -40,10 +40,12 @@
       function getWeather(json) {
         var temp = json.currentobservation.Temp;
         var dewp = json.currentobservation.Dewp;
+        var hum = json.currentobservation.Relh;
         var location = json.location.areaDescription;
-        html = '<h2>Temp: '+temp+'&deg;F </h2>';
-        html += '<h3>Dewp: '+dewp+'&deg;F </h3>'
-        html += '<ul><li>'+location+'</li></ul>';
+        html = '<h2>'+temp+'&deg;F </h2>';
+        html += '<ul><li>'+dewp+'&deg;F </li>';
+        html += '<li>'+hum+'%</li>'
+        html += '<li>'+location+'</li></ul>';
         //html += '<li class="currently">'+weather.currently+'</li>';
         //html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
             
