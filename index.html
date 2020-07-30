@@ -30,6 +30,10 @@
         alert("Lat: " + position.coords.latitude + "Long:" + position.coords.longitude);
       };
       
+      function errorPosition(error) {
+        alert("Error position");
+      };
+      
       function getWeather() {
         $.simpleWeather({
           woeid: '12760168',
