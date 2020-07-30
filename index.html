@@ -39,9 +39,11 @@
       
       function getWeather(json) {
         var temp = json.currentobservation.Temp;
-        html = '<h2>'
-        html += temp +'&deg;F </h2>';
-        //html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+        var dewp = json.currentobservation.Dewp;
+        var location = json.location.areaDescription;
+        html = '<h2>Temp: '+temp+'&deg;F </h2>';
+        html += '<h3>Dewp: '+dewp+'&deg;F </h3>'
+        html += '<ul><li>'+location+'</li></ul>';
         //html += '<li class="currently">'+weather.currently+'</li>';
         //html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
             
