@@ -12,14 +12,13 @@
     <script src="jquery.simpleWeather.js"></script>
     <script>
       $(document).ready(function() {
-        getLocation();
         setInterval(getWeather, 600000); //update every 10 minutes
         setInterval(showClock, 500);
       });
       
-      function getLocation() {
+      function getWeather() {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(success, errorPosition);
+          navigator.geolocation.getCurrentPosition(success, geoError);
           } else {
             alert("Geolocation not supported") ;
         }
@@ -28,28 +27,20 @@
       function success(position) {
         var url = "https://forecast.weather.gov/MapClick.php?lat=" + position.coords.latitude
                 + "&lon=" + position.coords.longitude + "&FcstType=json"
-        var resp = $.getJSON(url, function(resp) {
-          getWeather(resp);
-        }); 
-      };
-      
-      function errorPosition(error) {
-        alert("code: " + error.code + " msg: " + error.message);
-      };
-      
-      function getWeather(json) {
-        var temp = json.currentobservation.Temp;
-        var dewp = json.currentobservation.Dewp;
-        var hum = json.currentobservation.Relh;
-        var location = json.location.areaDescription;
-        html = '<h2>'+temp+'&deg;F </h2>';
-        html += '<ul><li>'+dewp+'&deg;F </li>';
-        html += '<li>'+hum+'%</li>'
-        html += '<li>'+location+'</li></ul>';
-        //html += '<li class="currently">'+weather.currently+'</li>';
-        //html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+        $.getJSON(url, function(json) {
+          var temp = json.currentobservation.Temp;
+          var dewp = json.currentobservation.Dewp;
+          var hum = json.currentobservation.Relh;
+          var location = json.location.areaDescription;
+          html = '<h2>'+temp+'&deg;F </h2>';
+          html += '<ul><li>'+dewp+'&deg;F </li>';
+          html += '<li>'+hum+'%</li>'
+          html += '<li>'+location+'</li></ul>';
+          //html += '<li class="currently">'+weather.currently+'</li>';
+          //html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
             
-        $("#weather").html(html);
+          $("#weather").html(html);
+        }); 
       };
       
       function showClock() {
@@ -58,6 +49,10 @@
         var m = today.getMinutes();
         if (m < 10) {m = "0" + m};  // add zero in front of numbers < 10
         $("#clock").html(h + ":" + m);
+      };
+      
+      function geoError(error) {
+        alert("code: " + error.code + " msg: " + error.message);
       };
      
     </script>
