@@ -12,7 +12,6 @@
     <script src="jquery.simpleWeather.js"></script>
     <script>
       $(document).ready(function() {
-        //getWeather();
         getLocation();
         setInterval(getWeather, 600000); //update every 10 minutes
         setInterval(showClock, 500);
@@ -30,7 +29,7 @@
         var url = "https://forecast.weather.gov/MapClick.php?lat=" + position.coords.latitude
                 + "&lon=" + position.coords.longitude + "&FcstType=json"
         var resp = $.getJSON(url, function(resp) {
-          alert(resp.currentobservation.Temp);
+          getWeather(resp);
         }); 
       };
       
@@ -38,24 +37,15 @@
         alert("code: " + error.code + " msg: " + error.message);
       };
       
-      function getWeather() {
-        $.simpleWeather({
-          woeid: '12760168',
-          location: '',
-          unit: 'f',
-          success: function(weather) {
-          html = '<h2><i class="icon-'+weather.code+'"></i> '
-            html += weather.temp+'&deg;'+weather.units.temp+'</h2>';
-            html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-            html += '<li class="currently">'+weather.currently+'</li>';
-            html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+      function getWeather(json) {
+        var temp = json.currentobservation.Temp;
+        html = '<h2> '
+        html += temp+'&deg;F'+weather.units.temp+'</h2>';
+        //html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+        //html += '<li class="currently">'+weather.currently+'</li>';
+        //html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
             
-            for(var i=0;i<weather.forecast.length;i++) {
-              html += '<p>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
-            }
-            html += "<p>"+weather.updated+"</p>";
-        
-            $("#weather").html(html);
+        $("#weather").html(html);
           },
           error: function(error) {
             $("#weather").html('<p>'+error+'</p>');
