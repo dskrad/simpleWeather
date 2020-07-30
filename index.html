@@ -12,6 +12,7 @@
     <script src="jquery.simpleWeather.js"></script>
     <script>
       $(document).ready(function() {
+        getWeather();
         setInterval(getWeather, 600000); //update every 10 minutes
         setInterval(showClock, 500);
       });
