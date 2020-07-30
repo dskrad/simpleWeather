@@ -13,6 +13,7 @@
     <script>
       $(document).ready(function() {
         getWeather();
+        getLocation();
         setInterval(getWeather, 600000); //update every 10 minutes
         setInterval(showClock, 500);
       });
